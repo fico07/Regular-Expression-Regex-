@@ -1,0 +1,95 @@
+ na regular expression.
+
+/\d{5}/ encontra 5 digitos.
+
+{x,}
+Encontra x ou mais ocorrências na regular expression.
+
+/\s{2,}/ encontra no minimo 2 caracteres de espaço em branco.
+
+{x,y}
+Encontra x para y numero de ocorrências na regular expression.
+
+/\d{2,4}/ encontra no minimo 2 mas nao mais que 4 digitos
+
+?
+Encontra zero ou nenhuma ocorrência. Equivalente a {0,1}.
+
+/a\s?b/ encontra “ab” ou “a b”.
+
+*
+Encontra zero ou mais ocorrências. Equivalente a {0,}.
+
+/we*/ encontra “w” em “why” e “wee” em “between”, mas não em “bad”.
+
++
+Encontra uma ou mais ocorrências. Equivalente a {1,}.
+
+/fe+d/ encontra tanto em “fed” quanto em “feed”.
+
+Alternação & Agrupamento
+( )
+Agrupamento de caracteres para criar uma cláusula de condição. Pode estar aninhado.
+
+/(abc)+(def)/ encontra um ou mais ocorrencias de “abc” seguido por uma ocorrencia de “def”.
+
+|
+Combina cláusulas de condições dentro de uma regular expression e então encontra qualquer uma das cláusulas. Similar à expressão “OR”.
+
+/(ab)|(cd)|(ef)/ encontra “ab” ou “cd” ou “ef”.
+
+Backreferences
+( )\n
+Encontra uma cláusula entre parênteses. n é o número de cláusulas para a esquerda da backreference.
+
+(\w+)\s+\1 encontra quaisquer palavras que ocorra duas vezes na mesma linha, como “hubba hubba.” O \1 denota que a primeria palavra depois do espaço deve encontrar a porção da string que foi encontrada no último commando dentro de parênteses. Se existisse mais de um comando dentro de parênteses, você deve usar \2 ou \3 para encontrar o apropriado agrupamento da esquerda da backreference. Até 9 backreferences podem ser usadas no padrão da string.
+
+Modificadores de Padrões
+Em adição aos caracteres padrões para buscar, você pode usar switches para fazer uma pesquisa global, case- insensitive (ignora minúsculas e maiúsculas) ou ambas.
+
+i
+Ignora se é minúscula ou maiúscula.
+
+/The/i encontra “the” e “The” e “tHe”.
+
+g
+Pesquisa Global para todas as ocorrências do padrão.
+
+/ain/g encontra os dois “ain” em “No pain no gain”, ao invés de apenas o primeiro.
+
+gi
+Pesquisa Global, e ignorar case.
+
+/it/gi encontra todos “it” em “It is our IT department”.
+
+lastIndex
+Armazena a posição da última pesquisa bem sucessida realizada na string. Se nada for encontrado, a propriedade lastIndex será colocada como –1.
+
+$n
+n representa o numero de 1 a 9.
+
+Armazena os nove mais recentes pesquisa dentro de parênteses encontradas. Por exemplo, se o padrão usado por uma regular expression para a última pesquisa foi /(Hello)(\s+)(world)/ e a string pesquisada foi “Hello world” o conteúdo de RegExp.$2 poderia ser qualquer caractere entro “Hello” e “world”.
+
+source
+Armazena a copia do padrão da regular expression.
+
+Métodos usados pelas expressões regulares
+exec
+Um método RegExp que executa pesquisas em uma string. O mesmo retorna um array das informações obtidas.
+
+test
+Um método RegExp que testa uma pesquisa em uma string. O mesmo retorna true ou false.
+
+match
+Um método de String que executa uma pesquisa em uma string. O mesmo retorna um array das informações obtidas ou nulo se nada for encontrado.
+
+search
+Um método de String que testa uma pesquisa em uma string. O mesmo retorna o índice do resultado, ou -1 se a pesquisa falhar.
+
+replace
+Um método de String que executa uma pesquisa em uma string, e substitui o resultado encontrado por uma substring.
+
+split
+Um método de String que usa uma regular expression ou uma string para quebrar uma string em uma array de substrings.
+
+Quando quiser saber se o padrão foi encontrado na string, pode usar o método test ou search. Os métodos exec e match trazem mais informações, porém são mais lentos. Ao usar exec ou match e obter sucesso, será retornado um array e atualizará as propriedades do objeto regular expression associado e também de objetos pré-definidos. Se a pesquisa falir, o método retornará nulo.
